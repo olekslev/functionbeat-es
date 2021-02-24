@@ -1,0 +1,23 @@
+###################### Functionbeat Configuration Example #######################
+
+functionbeat.provider.gcp.location_id: "europe-west2"
+functionbeat.provider.gcp.project_id: "testproject-ol"
+functionbeat.provider.gcp.storage_name: "functionbeat-deploy"
+functionbeat.provider.gcp.functions:
+  - name: pubsub
+    enabled: true
+    type: pubsub
+    description: "Google Cloud Function for Pub/Sub"
+    trigger:
+      resource: "projects/_/pubsub/myPubSub"
+      #service: "pubsub.googleapis.com"
+  - name: storage
+    enabled: true
+    type: storage
+    description: "Google Cloud Function for Cloud Storage"
+    trigger:
+      resource: "projects/my-project/buckets/my-storage"
+      event_type: "google.storage.object.finalize"
+
+cloud.id: "MyESDeployment:SomeLongString=="
+cloud.auth: "elastic:mypassword"
